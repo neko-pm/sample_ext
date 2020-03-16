@@ -62,10 +62,14 @@ jobs:
           mkdir build
           cd build
           python ../configure.py --sdks csgo
+              
+      - name: build
+        run: |
+          cd src/build
           ambuild
         
       - name: upload extension artifact
         uses: actions/upload-artifact@master
         with:
-          name: extension
+          name: extension-${{ matrix.sourcemod_version }}-${{ matrix.metamod_version }}
           path: src/build/package/
