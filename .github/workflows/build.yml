@@ -43,8 +43,7 @@ jobs:
           path: 'ambuild'
         
       - name: install ambuild
-        run: ambuild/setup.py install
-        shell: python
+        run: python ambuild/setup.py install
         
       - uses: ilammy/msvc-dev-cmd@v1
       
