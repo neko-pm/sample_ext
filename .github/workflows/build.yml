@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: alliedmodders/hl2sdk
-          ref: hl2sdk-csgo
+          ref: csgo
           path: 'hl2sdk-csgo'
         
       - name: download sourcemod
