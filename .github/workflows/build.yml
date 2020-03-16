@@ -32,7 +32,7 @@ jobs:
       - name: download sourcemod submodules
         run: |
           cd sourcemod
-          git submodule sync --recursive
+          git submodule update --init --recursive
         
       - name: download metamod
         uses: actions/checkout@v2
@@ -62,7 +62,6 @@ jobs:
           python ../configure.py --sdks csgo
           ambuild
         
-      - name: Upload server artifact
         uses: actions/upload-artifact@master
         with:
           name: extension
