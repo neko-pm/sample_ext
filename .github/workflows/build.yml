@@ -29,7 +29,8 @@ jobs:
           ref: ${{ matrix.sourcemod_version }}
           path: 'sourcemod'
         
-      - run: |
+      - name: download sourcemod submodules
+        run: |
           cd sourcemod
           git submodule sync --recursive
         
