@@ -28,6 +28,7 @@ jobs:
           repository: alliedmodders/sourcemod
           ref: ${{ matrix.sourcemod_version }}
           path: 'sourcemod'
+          submodules: recursive
         
       - name: download metamod
         uses: actions/checkout@v2
