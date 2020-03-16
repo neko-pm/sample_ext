@@ -62,6 +62,7 @@ jobs:
           python ../configure.py --sdks csgo
           ambuild
         
+      - name: upload extension artifact
         uses: actions/upload-artifact@master
         with:
           name: extension
