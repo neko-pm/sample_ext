@@ -53,6 +53,8 @@ jobs:
           python setup.py install
         
       - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x86
       
       - name: configure ambuild
         run: |
