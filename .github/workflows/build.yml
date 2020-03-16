@@ -1,0 +1,63 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        sourcemod_version: [1.10-dev, master]
+        metamod_version: [1.10-dev]
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: 'src'
+        
+      - name: download csgo sdk
+        uses: actions/checkout@v2
+        with:
+          repository: alliedmodders/hl2sdk
+          ref: hl2sdk-csgo
+          path: 'hl2sdk-csgo'
+        
+      - name: download sourcemod
+        uses: actions/checkout@v2
+        with:
+          repository: alliedmodders/sourcemod
+          ref: ${{ matrix.sourcemod_version }}
+          path: 'sourcemod'
+        
+      - name: download metamod
+        uses: actions/checkout@v2
+        with:
+          repository: alliedmodders/metamod-source
+          ref: ${{ matrix.metamod_version }}
+          path: 'mmsource-1.10'
+        
+      - name: download ambuild
+        uses: actions/checkout@v2
+        with:
+          repository: alliedmodders/ambuild
+          path: 'ambuild'
+        
+      - name: install ambuild
+        run: ambuild/setup.py install
+        shell: python
+        
+      - uses: ilammy/msvc-dev-cmd@v1
+      
+      - name: configure ambuild
+        run: |
+          cd src
+          mkdir build
+          cd build
+          python ../configure.py --sdks csgo
+          ambuild
+        
+      - name: Upload server artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: extension
+          path: src/build/package/
