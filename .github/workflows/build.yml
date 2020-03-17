@@ -84,5 +84,5 @@ jobs:
       - name: upload extension artifact
         uses: actions/upload-artifact@master
         with:
-          name: ${{ runner.os }}-${{ matrix.sdk }}-${{ github.sha }}
+          name: ${{ runner.os }}-${{ matrix.sourcemod_version }}-${{ matrix.sdk }}-${{ github.sha }}
           path: src/build/package/
