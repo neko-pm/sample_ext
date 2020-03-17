@@ -74,7 +74,7 @@ jobs:
           cd src
           mkdir build
           cd build
-          python ../configure.py --sdks csgo
+          python ../configure.py --sdks ${{ matrix.sdk }}
               
       - name: build
         run: |
