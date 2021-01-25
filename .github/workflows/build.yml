@@ -29,11 +29,7 @@ jobs:
           repository: alliedmodders/sourcemod
           ref: ${{ matrix.sourcemod_version }}
           path: 'sourcemod'
-        
-      - name: download sourcemod submodules
-        run: |
-          cd sourcemod
-          git submodule update --init --recursive
+          submodules: 'recursive'
         
       - name: download metamod
         uses: actions/checkout@v2
