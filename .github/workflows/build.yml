@@ -58,7 +58,9 @@ jobs:
           
       - name: install linux packages
         if: runner.os == 'Linux'
-        run: sudo apt update && sudo apt install -y --no-install-recommends gcc-multilib g++-multilib
+        run: |
+          sudo apt update && sudo apt install -y --no-install-recommends clang-4.0 g++-multilib lib32z1 lib32z1-dev libc6-dev-i386 libc6-i386
+          export CC=clang-4.0 && export CXX=clang++-4.0
         
       - uses: ilammy/msvc-dev-cmd@v1
         if: runner.os == 'Windows'
